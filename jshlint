@@ -1,9 +1,7 @@
 #!/bin/sh
 
-lib="/usr/lib/jshlint/lint.js"
+WD="$PWD"
 
-if [ -f "$lib" ]; then
-  js "$lib" "$@"
-else
-  js lint.js "$@"
-fi
+cd /usr/lib/jshlint
+
+js lint.js "$WD/$@"
