@@ -1,7 +1,14 @@
 #!/bin/sh
 
-WD="$PWD"
+DIR="$PWD"
+FILE="$@"
 
 cd /usr/lib/jshlint
 
-js lint.js "$WD/$@"
+if [ -f "$FILE" ]; then
+  js lint.js "$FILE"
+elif [ -f "$DIR/$FILE" ]; then
+  js lint.js "$DIR/$FILE"
+else
+  echo File not found: $FILE
+fi
