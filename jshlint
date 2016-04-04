@@ -1,14 +1,21 @@
 #!/bin/sh
 
-DIR="$PWD"
-FILE="$@"
+LIBDIR="/usr/lib/jshlint"
+LIB="lint.js"
+LIBPATH="$LIBDIR/$LIB"
 
-cd /usr/lib/jshlint
+if [ ! -f "$LIB" ]; then
+  if [ ! -f "$LIBPATH" ]; then
+    echo lint.js not found
+    exit 1
+  else
+    LIB="$LIBPATH"
+  fi
+fi
 
-if [ -f "$FILE" ]; then
-  js lint.js "$FILE"
-elif [ -f "$DIR/$FILE" ]; then
-  js lint.js "$DIR/$FILE"
+if [ -f "$@" ]; then
+  js "$LIB" "$@"
 else
   echo File not found: $FILE
+  exit 1
 fi
