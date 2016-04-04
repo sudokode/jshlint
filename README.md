@@ -12,7 +12,8 @@ Dependencies
 Usage
 -----
 
-`jshlint` is a shell script that runs the `js` JavaScript interpreter with `lint.js`.  
+`jshlint` is a shell script that runs the `js` JavaScript interpreter with `lint.js`.
+
 `lint.js` is a (poorly) written JS application that will load the provided file, run it through `jslint`, and return information and warnings about the source.
 
 ```
