@@ -6,8 +6,8 @@ Use Douglas Crockford's [JSLint](https://github.com/douglascrockford/JSLint) on 
 Dependencies
 ------------
 
-`jslint` - Required for linting ([link](https://github.com/douglascrockford/JSLint))
-`js` - Required to run the linter in a console
+- `jslint` - Required for linting ([link](https://github.com/douglascrockford/JSLint))
+- `js` - Required to run the linter in a console
 
 Usage
 -----
