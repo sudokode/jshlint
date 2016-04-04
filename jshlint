@@ -1,0 +1,9 @@
+#!/bin/sh
+
+lib="/usr/lib/jshlint/lint.js"
+
+if [ -f "$lib" ]; then
+  js "$lib" "$@"
+else
+  js lint.js "$@"
+fi
