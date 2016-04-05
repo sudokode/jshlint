@@ -27,9 +27,9 @@
     let result;
 
     let options = {
-      "white": true,
-      "browser": true,
-      "es6": true
+      white: true,
+      browser: true,
+      es6: true
     };
 
     try {
@@ -80,10 +80,10 @@
     print("==========");
 
     result.warnings.forEach(function(warning) {
+      const beginsWithWhite = /^\s+/;
       let lineCol;
       let prevLine;
       let line;
-      let regex = /^\s+/;
       let whitespace = "";
       let msg = "";
 
@@ -96,8 +96,8 @@
       prevLine = result.lines[warning.line - 1];
       line = result.lines[warning.line];
 
-      if (regex.test(line)) {
-        whitespace = regex.exec(line)[0];
+      if (beginsWithWhite.test(line)) {
+        whitespace = beginsWithWhite.exec(line)[0];
       }
 
       if (prevLine) {
@@ -105,7 +105,7 @@
       }
       print(line);
 
-      msg += repeat(" ", warning.column - whitespace.length);
+      msg = repeat(" ", warning.column - whitespace.length);
       msg += whitespace + "^ " + warning.message;
 
       print(msg);
