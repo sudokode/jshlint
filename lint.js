@@ -7,7 +7,7 @@
 
 /*global load, read, print, quit, jslint*/
 
-(function(args) {
+(function (args) {
   "use strict";
 
   // poor man's str.repeat
