@@ -45,7 +45,7 @@
     }
 
     if (!source) {
-      print("Empty file: " + file);
+      print("Empty file:", file);
       return false;
     }
 
@@ -74,7 +74,6 @@
 
     if (result.warnings.length === 0) {
       print("No warnings, but result not OK");
-      return false;
     }
 
     print("Warnings");
