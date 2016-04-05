@@ -17,7 +17,7 @@ Usage
 `lint.js` is a (poorly written) JS application that will load the provided file, run it through `jslint`, and return information and warnings about the source.
 
 ```
-$ jshlint lint.js
+$ ./jshlint lint.js
 (JSLint) 2016-03-20
 
 JSON file: false
@@ -27,11 +27,11 @@ Imports: 0
 Directives: 1
 Functions: 5
 
-Warnings
-========
+ Warnings
+==========
 
-line 155, column 3
--------------------
+ line 154, column 3
+--------------------
 }(arguments));
   ^ Unexpected 'arguments'.
 

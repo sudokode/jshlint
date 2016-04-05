@@ -76,7 +76,7 @@
       print("No warnings, but result not OK");
     }
 
-    print(" Warnings ");
+    print(" Warnings");
     print("==========");
 
     result.warnings.forEach(function(warning) {
