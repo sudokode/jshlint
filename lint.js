@@ -111,10 +111,10 @@
       print(msg);
     });
 
-    print("\nWarnings: " + result.warnings.length);
+    print("\nWarnings:", result.warnings.length);
 
     if (result.stop) {
-      print("\nCould not process entire file: " + file);
+      print("\nCould not process entire file:", file);
       return false;
     }
 
