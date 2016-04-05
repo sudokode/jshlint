@@ -4,24 +4,28 @@ LIBDIR="/usr/lib/jshlint"
 LIB="lint.js"
 LIBPATH="$LIBDIR/$LIB"
 
-FILE="$1"
+FILE="$@"
 if [ -z "$FILE" ]; then
-  echo File required
+  echo File required >&2
+  exit 1
+fi
+
+FILE="$(realpath "$FILE")"
+if [ ! -f "$FILE" ]; then
+  echo File not found: "$FILE" >&2
   exit 1
 fi
 
 if [ ! -f "$LIB" ]; then
   if [ ! -f "$LIBPATH" ]; then
-    echo lint.js not found
+    echo lint.js not found >&2
     exit 1
-  else
-    LIB="$LIBPATH"
   fi
+
+  LIB="$LIBPATH"
+
+  # this is hacky, but so is the js interpreter
+  FILE="../../../$FILE"
 fi
 
-if [ -f "$FILE" ]; then
-  js "$LIB" "`realpath $FILE`"
-else
-  echo File not found: "$FILE"
-  exit 1
-fi
+js "$LIB" "$FILE"
