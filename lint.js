@@ -15,10 +15,16 @@
     let result;
 
     try {
-      source = read(file);
-    } catch(err) {
-      print(err);
-      return false;
+      // why?
+      source = read("../../.." + file);
+    } catch(e1) {
+      try {
+        source = read(file);
+      } catch (e2) {
+        print(e1);
+        print(e2);
+        return false;
+      }
     }
 
     if (!source) {

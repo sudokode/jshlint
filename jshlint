@@ -23,9 +23,6 @@ if [ ! -f "$LIB" ]; then
   fi
 
   LIB="$LIBPATH"
-
-  # this is hacky, but so is the js interpreter
-  FILE="../../../$FILE"
 fi
 
 js "$LIB" "$FILE"
