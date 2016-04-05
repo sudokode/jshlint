@@ -14,10 +14,6 @@
   function repeat(pattern, count) {
     let result = "";
 
-    if (count < 1) {
-      return result;
-    }
-
     while (count >= 1) {
       result += pattern;
       count -= 1;
