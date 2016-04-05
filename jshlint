@@ -16,6 +16,6 @@ fi
 if [ -f "$@" ]; then
   js "$LIB" "$@"
 else
-  echo File not found: $FILE
+  echo File not found: "$@"
   exit 1
 fi
