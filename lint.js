@@ -10,9 +10,31 @@
 (function(args) {
   "use strict";
 
+  // poor man's str.repeat
+  function repeat(pattern, count) {
+    let result = "";
+
+    if (count < 1) {
+      return result;
+    }
+
+    while (count >= 1) {
+      result += pattern;
+      count -= 1;
+    }
+
+    return result;
+  }
+
   function lint(file) {
     let source;
     let result;
+
+    let options = {
+      "white": true,
+      "browser": true,
+      "es6": true
+    };
 
     try {
       // why?
@@ -32,7 +54,7 @@
       return false;
     }
 
-    result = jslint(source, {"white": true, "browser": true, "es6": true});
+    result = jslint(source, options);
 
     if (result === undefined) {
       print("Problem with jslint");
@@ -74,7 +96,7 @@
       print();
 
       lineCol = "line " + (warning.line + 1) + ", column " + (warning.column + 1) + "\n";
-      lineCol += new Array(lineCol.length).join('-');
+      lineCol += repeat("-", lineCol.length);
       print(lineCol);
 
       prevLine = result.lines[warning.line - 1];
@@ -89,8 +111,7 @@
       }
       print(line);
 
-      msg += new Array(warning.column - whitespace.length + 1).join(' ');
-
+      msg += repeat(" ", warning.column - whitespace.length);
       msg += whitespace + "^ " + warning.message;
 
       print(msg);
