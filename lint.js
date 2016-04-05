@@ -76,8 +76,8 @@
       print("No warnings, but result not OK");
     }
 
-    print("Warnings");
-    print("========");
+    print(" Warnings ");
+    print("==========");
 
     result.warnings.forEach(function(warning) {
       let lineCol;
@@ -89,7 +89,7 @@
 
       print();
 
-      lineCol = "line " + (warning.line + 1) + ", column " + (warning.column + 1) + "\n";
+      lineCol = " line " + (warning.line + 1) + ", column " + (warning.column + 1) + "\n";
       lineCol += repeat("-", lineCol.length);
       print(lineCol);
 
