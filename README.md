@@ -49,6 +49,8 @@ line 115, column 2
 Warnings: 3
 ```
 
+*Tabs may or may not break the warning message spacing.*
+
 License
 -------
 
