@@ -7,8 +7,6 @@
 
 /*global load, read, print, quit, jslint*/
 
-load("jslint.js");
-
 (function(args) {
   "use strict";
 
@@ -108,6 +106,18 @@ load("jslint.js");
     if (!args[0]) {
       print("Source file required");
       quit();
+    }
+
+    try {
+      load("jslint.js");
+    } catch (e1) {
+      try {
+        load("/usr/lib/jshlint/jslint.js");
+      } catch (e2) {
+        print(e1);
+        print(e2);
+        quit(1);
+      }
     }
 
     success = lint(args[0]);
