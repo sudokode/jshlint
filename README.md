@@ -17,7 +17,7 @@ Usage
 `lint.js` is a (poorly) written JS application that will load the provided file, run it through `jslint`, and return information and warnings about the source.
 
 ```
-$ ./jshlint lint.js
+$ jshlint lint.js
 (JSLint) 2016-03-20
 
 JSON file: false
@@ -25,31 +25,26 @@ JSON file: false
 Modules: false
 Imports: 0
 Directives: 1
-Functions: 4
+Functions: 5
 
 Warnings
 ========
 
-line 70, column 21
-------------------
-      lineCol = "line " + warning.line + ", column " + warning.column + "\n";
-      lineCol += new Array(lineCol.length).join('-');
-                     ^ Expected '[]' and instead saw 'new Array'.
-
-line 81, column 16
-------------------
-      msg = new Array(warning.column + 1).join(' ');
-                ^ Expected '[]' and instead saw 'new Array'.
-
-line 115, column 2
-------------------
+line 155, column 3
+-------------------
 }(arguments));
   ^ Unexpected 'arguments'.
 
-Warnings: 3
+Warnings: 1
 ```
 
 *Tabs may or may not break the warning message spacing.*
+
+Notes
+-----
+`jshlint` expects `lint.js` to be in the current working directory or `/usr/lib/jshlint/`. Likewise, `lint.js` expects `jslint.js` to be in in the CWD or `/usr/lib/jshlint/`.
+
+It might be better to use `#!/usr/bin/env js` and feed `lint.js` directly into the interpreter rather than relying on a hacky shell script to find `lint.js` and run it through `js`. This would mean renaming `lint.js` to `jshlint`.
 
 License
 -------
