@@ -63,24 +63,32 @@ load("jslint.js");
       let lineCol;
       let prevLine;
       let line;
-      let msg;
+      let regex = /^\s+/;
+      let whitespace = "";
+      let msg = "";
 
       print();
 
-      lineCol = "line " + warning.line + ", column " + warning.column + "\n";
+      lineCol = "line " + (warning.line + 1) + ", column " + (warning.column + 1) + "\n";
       lineCol += new Array(lineCol.length).join('-');
       print(lineCol);
 
       prevLine = result.lines[warning.line - 1];
       line = result.lines[warning.line];
 
+      if (regex.test(line)) {
+        whitespace = regex.exec(line)[0];
+      }
+
       if (prevLine) {
         print(prevLine);
       }
       print(line);
 
-      msg = new Array(warning.column + 1).join(' ');
-      msg += "^ " + warning.message;
+      msg += new Array(warning.column - whitespace.length + 1).join(' ');
+
+      msg += whitespace + "^ " + warning.message;
+
       print(msg);
     });
 
