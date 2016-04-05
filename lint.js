@@ -39,8 +39,7 @@
       try {
         source = read(file);
       } catch (e2) {
-        print(e1);
-        print(e2);
+        print(e1 + "\n" + e2);
         return false;
       }
     }
@@ -137,8 +136,7 @@
       try {
         load("/usr/lib/jshlint/jslint.js");
       } catch (e2) {
-        print(e1);
-        print(e2);
+        print(e1 + "\n" + e2);
         quit(1);
       }
     }
