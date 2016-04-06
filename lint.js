@@ -1,3 +1,11 @@
+// Copyright (c) 2016 sudokode
+
+/**
+ * This source ('lint.js') is licensed under the JSON License.
+ * A copy is provided in the git repository:
+ *    https://github.com/sudokode/jshlint
+ */
+
 /*global load, read, print, quit, jslint*/
 
 /**
