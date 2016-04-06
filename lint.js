@@ -22,20 +22,19 @@
    * Create a string with <pattern> repeated <count> times
    * The `js` interpreter lacks this function :(
    *
-   * This is a scary recursive function that modifies and
-   * returns its own parameter. Seriously wat
-   *
    * @param {String} pattern
    * @param {Number} count
-   * @return {String} pattern
+   * @return {String} result
    */
   function repeat(pattern, count) {
-    if (count > 1) {
-      pattern += repeat(pattern, count - 1);
-      return pattern;
+    let result = "";
+
+    while (count > 0) {
+      result += pattern;
+      count -= 1;
     }
 
-    return pattern;
+    return result;
   }
 
   /**
