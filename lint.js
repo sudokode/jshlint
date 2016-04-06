@@ -69,7 +69,7 @@
     }
 
     // `jshlint` already checks for this *shrug*
-    if (!source) {
+    if ( ! source) {
       print('Empty file:', file);
       return false;
     }
@@ -86,7 +86,7 @@
     print('JSON file:', result.json + '\n');
 
     // Ignore if file is JSON
-    if (!result.json) {
+    if ( ! result.json) {
       print('Modules:', result.module);
       print('Imports:', result.imports.length);
       print('Directives:', result.directives.length);
@@ -166,7 +166,7 @@
   function main(args) {
     let success;
 
-    if (!args[0]) {
+    if ( ! args[0]) {
       print('Source file required');
       quit(1);
     }
@@ -186,7 +186,7 @@
     success = lint(args[0]);
 
     // The entire point of returning boolean from lint()
-    if (!success) {
+    if ( ! success) {
       quit(1);
     }
 
