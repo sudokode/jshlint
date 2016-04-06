@@ -39,6 +39,7 @@
 
   /**
    * Read a file, run jslint() on it, and print the result
+   * The return value decides the exit code, see main()
    *
    * @param {String} file
    * @return {Boolean}
@@ -47,6 +48,7 @@
     let source;
     let result;
 
+    // Sane defaults?
     let options = {
       white: true,
       browser: true,
@@ -54,17 +56,19 @@
     };
 
     try {
-      // why?
+      // `js` is weird
       source = read('../../..' + file);
     } catch(e1) {
       try {
         source = read(file);
       } catch (e2) {
+        // Let the user know both files failed
         print(e1 + '\n' + e2);
         return false;
       }
     }
 
+    // `jshlint` already checks for this *shrug*
     if (!source) {
       print('Empty file:', file);
       return false;
@@ -81,6 +85,7 @@
 
     print('JSON file:', result.json + '\n');
 
+    // Ignore if file is JSON
     if (!result.json) {
       print('Modules:', result.module);
       print('Imports:', result.imports.length);
@@ -93,6 +98,7 @@
       return true;
     }
 
+    // Not likely, also not fatal
     if (result.warnings.length === 0) {
       print('No warnings, but result not OK');
     }
@@ -114,19 +120,29 @@
       lineCol += repeat('-', lineCol.length);
       print(lineCol);
 
+      // Grab the previous line for reference
       prevLine = result.lines[warning.line - 1];
       line = result.lines[warning.line];
 
+      /**
+       * Tabs may still break the spacing, but this
+       * seems to mitigate it most of the time. When
+       * running this on jquery-2.2.2.js (which fails),
+       * it breaks. When linting test/tabs.js, it works.
+       * I'll leave it up to you to choose to use tabs.
+       */
       if (beginsWithWhite.test(line)) {
         whitespace = beginsWithWhite.exec(line)[0];
       }
 
-      if (prevLine) {
-        print(prevLine);
-      }
+      // Print a blank line anyway, reference is good
+      print(prevLine);
       print(line);
 
+      // Add spacing without the whitespace from before
       msg = repeat(' ', warning.column - whitespace.length);
+
+      // Then use the whitespace from before to accomodate tabs
       msg += whitespace + '^ ' + warning.message;
 
       print(msg);
@@ -152,7 +168,7 @@
 
     if (!args[0]) {
       print('Source file required');
-      quit();
+      quit(1);
     }
 
     try {
@@ -161,6 +177,7 @@
       try {
         load('/usr/lib/jshlint/jslint.js');
       } catch (e2) {
+        // Let the user know both files failed
         print(e1 + '\n' + e2);
         quit(1);
       }
@@ -168,6 +185,7 @@
 
     success = lint(args[0]);
 
+    // The entire point of returning boolean from lint()
     if (!success) {
       quit(1);
     }
