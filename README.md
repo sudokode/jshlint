@@ -40,6 +40,47 @@ Warnings: 1
 
 *Tabs may or may not break the warning message spacing.*
 
+```
+$ ./jshlint test/tabs.js
+(JSLint) 2016-03-20
+
+JSON file: false
+
+Modules: false
+Imports: 0
+Directives: 0
+Functions: 1
+
+ Warnings
+==========
+
+ line 3, column 9
+------------------
+	// tab
+        notab = "foo"
+        ^ Expected ' "use strict"; ' before 'notab'.
+
+ line 3, column 22
+-------------------
+	// tab
+        notab = "foo"
+                     ^ Expected ';' and instead saw 'tab'.
+
+ line 4, column 2
+------------------
+        notab = "foo"
+	tab = "bar";
+	^ Undeclared 'tab'.
+
+ line 5, column 3
+------------------
+	tab = "bar";
+		twotabs = "foobar";
+		^ Undeclared 'twotabs'.
+
+Warnings: 4
+```
+
 Notes
 -----
 `jshlint` expects `lint.js` to be in the current working directory or `/usr/lib/jshlint/`. Likewise, `lint.js` expects `jslint.js` to be in in the CWD or `/usr/lib/jshlint/`.
