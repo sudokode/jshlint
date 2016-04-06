@@ -1,16 +1,23 @@
-/*
+/*global load, read, print, quit, jslint*/
+
+/**
  * Use JSLint on a source file
  *
  * Loads the given file, runs it through jslint(),
  * and prints out the warnings
  */
 
-/*global load, read, print, quit, jslint*/
-
 (function (args) {
   'use strict';
 
-  // poor man's str.repeat
+  /**
+   * Create a string with <pattern> repeated <count> times
+   * The `js` interpreter lacks this function :(
+   *
+   * @param {String} pattern
+   * @param {Number} count
+   * @return {String} result
+   */
   function repeat(pattern, count) {
     let result = '';
 
@@ -22,6 +29,12 @@
     return result;
   }
 
+  /**
+   * Read a file, run jslint() on it, and print the result
+   *
+   * @param {String} file
+   * @return {Boolean}
+   */
   function lint(file) {
     let source;
     let result;
@@ -121,6 +134,11 @@
     return true;
   }
 
+  /**
+   * Verify file argument, load jslint.js, call lint() on the file
+   *
+   * @param {Array} args
+   */
   function main(args) {
     let success;
 
