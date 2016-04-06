@@ -83,7 +83,7 @@ Warnings: 4
 
 Notes
 -----
-`jshlint` expects `lint.js` to be in the current working directory or `/usr/lib/jshlint/`. Likewise, `lint.js` expects `jslint.js` to be in in the CWD or `/usr/lib/jshlint/`.
+`jshlint` expects `lint.js` to be in the current working directory or `/usr/lib/jshlint/`. Likewise, `lint.js` expects `jslint.js` to be in the CWD or `/usr/lib/jshlint/`.
 
 It might be better to use `#!/usr/bin/env js` and feed `lint.js` directly into the interpreter rather than relying on a hacky shell script to find `lint.js` and run it through `js`. This would mean renaming `lint.js` to `jshlint`.
 
