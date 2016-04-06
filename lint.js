@@ -32,6 +32,7 @@
   function repeat(pattern, count) {
     if (count > 1) {
       pattern += repeat(pattern, count - 1);
+      return pattern;
     }
 
     return pattern;
