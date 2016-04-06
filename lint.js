@@ -8,11 +8,11 @@
 /*global load, read, print, quit, jslint*/
 
 (function (args) {
-  "use strict";
+  'use strict';
 
   // poor man's str.repeat
   function repeat(pattern, count) {
-    let result = "";
+    let result = '';
 
     while (count >= 1) {
       result += pattern;
@@ -34,63 +34,63 @@
 
     try {
       // why?
-      source = read("../../.." + file);
+      source = read('../../..' + file);
     } catch(e1) {
       try {
         source = read(file);
       } catch (e2) {
-        print(e1 + "\n" + e2);
+        print(e1 + '\n' + e2);
         return false;
       }
     }
 
     if (!source) {
-      print("Empty file:", file);
+      print('Empty file:', file);
       return false;
     }
 
     result = jslint(source, options);
 
     if (result === undefined) {
-      print("Problem with jslint");
+      print('Problem with jslint');
       return false;
     }
 
-    print(result.id, result.edition + "\n");
+    print(result.id, result.edition + '\n');
 
-    print("JSON file:", result.json + "\n");
+    print('JSON file:', result.json + '\n');
 
     if (!result.json) {
-      print("Modules:", result.module);
-      print("Imports:", result.imports.length);
-      print("Directives:", result.directives.length);
-      print("Functions:", result.functions.length + "\n");
+      print('Modules:', result.module);
+      print('Imports:', result.imports.length);
+      print('Directives:', result.directives.length);
+      print('Functions:', result.functions.length + '\n');
     }
 
     if (result.ok) {
-      print("No warnings");
+      print('No warnings');
       return true;
     }
 
     if (result.warnings.length === 0) {
-      print("No warnings, but result not OK");
+      print('No warnings, but result not OK');
     }
 
-    print(" Warnings");
-    print("==========");
+    print(' Warnings');
+    print('==========');
 
     result.warnings.forEach(function(warning) {
       const beginsWithWhite = /^\s+/;
       let lineCol;
       let prevLine;
       let line;
-      let whitespace = "";
-      let msg = "";
+      let whitespace = '';
+      let msg = '';
 
       print();
 
-      lineCol = " line " + (warning.line + 1) + ", column " + (warning.column + 1) + "\n";
-      lineCol += repeat("-", lineCol.length);
+      lineCol = ' line ' + (warning.line + 1) + ', column ' + (warning.column + 1) + '\n';
+      lineCol += repeat('-', lineCol.length);
       print(lineCol);
 
       prevLine = result.lines[warning.line - 1];
@@ -105,16 +105,16 @@
       }
       print(line);
 
-      msg = repeat(" ", warning.column - whitespace.length);
-      msg += whitespace + "^ " + warning.message;
+      msg = repeat(' ', warning.column - whitespace.length);
+      msg += whitespace + '^ ' + warning.message;
 
       print(msg);
     });
 
-    print("\nWarnings:", result.warnings.length);
+    print('\nWarnings:', result.warnings.length);
 
     if (result.stop) {
-      print("\nCould not process entire file:", file);
+      print('\nCould not process entire file:', file);
       return false;
     }
 
@@ -125,17 +125,17 @@
     let success;
 
     if (!args[0]) {
-      print("Source file required");
+      print('Source file required');
       quit();
     }
 
     try {
-      load("jslint.js");
+      load('jslint.js');
     } catch (e1) {
       try {
-        load("/usr/lib/jshlint/jslint.js");
+        load('/usr/lib/jshlint/jslint.js');
       } catch (e2) {
-        print(e1 + "\n" + e2);
+        print(e1 + '\n' + e2);
         quit(1);
       }
     }
