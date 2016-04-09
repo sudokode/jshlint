@@ -116,6 +116,7 @@
 
       print();
 
+      // Print the line/column heading
       lineCol = ' line ' + (warning.line + 1) + ', column ' + (warning.column + 1) + '\n';
       lineCol += repeat('-', lineCol.length);
       print(lineCol);
