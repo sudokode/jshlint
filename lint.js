@@ -156,6 +156,10 @@
       return false;
     }
 
+    if (result.warnings.length > 0) {
+        return false;
+    }
+
     return true;
   }
 
